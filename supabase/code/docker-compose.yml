@@ -14,6 +14,7 @@ services:
 
   bd-render:
     image: alpine/socat:1.8.0.0
+    container_name: sistemas_bd-render_bd-render
     restart: unless-stopped
     command: TCP-LISTEN:80,fork,reuseaddr TCP:kong:8000
     depends_on:
