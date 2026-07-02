@@ -12,6 +12,14 @@ name: supabase
 
 services:
 
+  bd-render:
+    image: alpine/socat:1.8.0.0
+    restart: unless-stopped
+    command: TCP-LISTEN:80,fork,reuseaddr TCP:kong:8000
+    depends_on:
+      kong:
+        condition: service_healthy
+
   studio:
     image: supabase/studio:2026.04.27-sha-5f60601
     restart: unless-stopped
